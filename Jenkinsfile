@@ -11,12 +11,12 @@ stage('Cloning Git')
 stage('Build-and-Tag')
 {
     /* building the image */
-    app.docker.build('eapen303/car_docker_repo')
+    app = docker.build('eapen303/car_docker_repo')
 }
 
 stage('Post-to-dockerhub')
 {
-    /* pushing to dockerhub using the right creds */
+    /* pushing to dockerhub using the right creds - might need an app = */
     docker.withRegistery('https://registry.hub.docker.com', 'docker_prop')
 }
 
