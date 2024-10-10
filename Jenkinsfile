@@ -17,7 +17,7 @@ stage('Build-and-Tag')
 stage('Post-to-dockerhub')
 {
     /* pushing to dockerhub using the right creds - might need an app = */
-    docker.withRegistery('https://registry.hub.docker.com', 'docker_prop')
+    docker.withRegistry('https://registry.hub.docker.com', 'docker_prop')
     {
         app.push('latest')
     }
