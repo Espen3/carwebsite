@@ -4,30 +4,35 @@ node('ubuntu-Appserver-1')
 def app
 stage('Cloning Git')
 {
-    /* check to make sure we have the repo */
+    /* Let's make sure we have the repository cloned to our workspace */
     checkout scm
 }
 
 stage('Build-and-Tag')
 {
-    /* building the image */
-    app = docker.build('eapen303/car_docker_repo')
+    /* This builds the actual image; 
+         * This is synonymous to docker build on the command line */
+    app = docker.build('Espen3/car_docker_repo')
 }
 
 stage('Post-to-dockerhub')
 {
-    /* pushing to dockerhub using the right creds - might need an app = */
     docker.withRegistry('https://registry.hub.docker.com', 'docker_prop')
     {
         app.push('latest')
     }
+   
 }
 
 stage('Deploy')
 {
-    /* deploy */
     sh "docker-compose down"
     sh "docker-compose up -d"
 }
 
 }
+
+
+
+
+
