@@ -12,7 +12,7 @@ stage('Build-and-Tag')
 {
     /* This builds the actual image; 
          * This is synonymous to docker build on the command line */
-    app = docker.build('Espen3/car_docker_repo')
+    app = docker.build('eapen303/car_docker_repo')
 }
 
 stage('Post-to-dockerhub')
